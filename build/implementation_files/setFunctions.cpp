@@ -54,22 +54,24 @@ Set<char> setIntersection(const Set<char> &s1, const Set<char> &s2)
 Set<char> setDiff(const Set<char> &s1, const Set<char> &s2)
 {
 	Set<char> result = s1;
-	
+
 	int size = s2.cardinality();
-	
-	for (int i = 0; i < size; i++) {
-	    if (result.isElement(s2[i])) {
-	        result.removeElement(s2[i]);
-	    }
+
+	for (int i = 0; i < size; i++)
+	{
+		if (result.isElement(s2[i]))
+		{
+			result.removeElement(s2[i]);
+		}
 	}
-	
+
 	return result;
 }
 
 // Returns a set that is the symetric difference of the two sets s1 and s2
 Set<char> setSymDiff(const Set<char> &s1, const Set<char> &s2)
 {
-	
+
 	Set<char> result = setUnion(setDiff(s1, s2), setDiff(s2, s1));
 
 	return result;
@@ -107,38 +109,37 @@ bool isSubSet(const Set<char> &s1, const Set<char> &s2)
 // Returns true if s1 is a proper subset of s2
 bool isProperSubSet(const Set<char> &s1, const Set<char> &s2)
 {
-		// Copied directly from subset
-		// this means we must make sure all elements 
-		if(s1.cardinality() == s2.cardinality())
-		{
-			return false;
-		}
-		else
-		{
-			bool wasFound;
-	for (size_t i = 0; i <= s1.cardinality() - 1; i++)
+	// Copied directly from subset
+	// this means we must make sure all elements
+	if (s1.cardinality() == s2.cardinality())
 	{
-		char s1AtIndexI = s1[i]; // a
-		for (size_t t = 0; t <= s2.cardinality() - 1; t++)
+		return false;
+	}
+	else
+	{
+		bool wasFound;
+		for (size_t i = 0; i <= s1.cardinality() - 1; i++)
 		{
-			if (s1AtIndexI == s2[t]) // a ==
+			char s1AtIndexI = s1[i]; // a
+			for (size_t t = 0; t <= s2.cardinality() - 1; t++)
 			{
-				wasFound = true;
+				if (s1AtIndexI == s2[t]) // a ==
+				{
+					wasFound = true;
+					break;
+				}
+				else
+				{
+					wasFound = false;
+				}
+			}
+			if (wasFound == false)
+			{
 				break;
 			}
-			else
-			{
-				wasFound = false;
-			}
 		}
-		if (wasFound == false)
-		{
-			break;
-		}
+		return wasFound;
 	}
-	return wasFound;
-		}
-	
 }
 
 // This implementaion was done with the help of my classmate Jay.
@@ -172,31 +173,38 @@ Set<Set<char>> PowerSet(const Set<char> &s)
 // Returns true if the sets in p make up a Partition of set s
 bool isPartition(const Set<Set<char>> &p, const Set<char> &s)
 {
-	
+
 	Set<char> tempUnion, tempIntersection;
 	int partSize = p.cardinality();
-	
+
 	for (int i = 0; i < partSize; ++i)
 	{
-		if (!isSubSet(p[i], s)) {
+		if (!isSubSet(p[i], s))
+		{
 			return false;
 		}
 
-		if (p[i].cardinality() == 0) {
+		if (p[i].cardinality() == 0)
+		{
 			return false;
 		}
-		
-		if (i + 1 < partSize) {
+
+		if (i + 1 < partSize)
+		{
 			tempIntersection = setIntersection(p[i], p[i + 1]);
-			if (tempIntersection.cardinality() > 0) return false;
+			if (tempIntersection.cardinality() > 0)
+				return false;
 		}
-		
-		tempUnion = setUnion(p[i], tempUnion); 
+
+		tempUnion = setUnion(p[i], tempUnion);
 	}
-	
-	if (tempUnion == s) {
-	    return true;
-	} else {
-	    return false;
+
+	if (tempUnion == s)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
