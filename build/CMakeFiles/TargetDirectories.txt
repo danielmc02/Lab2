@@ -1,0 +1,3 @@
+/Users/danielmccray/Desktop/sets/Lab2/build/CMakeFiles/LabTwoExecutable.dir
+/Users/danielmccray/Desktop/sets/Lab2/build/CMakeFiles/edit_cache.dir
+/Users/danielmccray/Desktop/sets/Lab2/build/CMakeFiles/rebuild_cache.dir

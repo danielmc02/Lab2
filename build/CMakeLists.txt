@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.10)
+project(Lab2)
+include_directories(header_files implementation_files)
+set (CMAKE_CXX_STANDARD 11)
+add_executable(LabTwoExecutable main.cpp header_files/set.h header_files/setFunctions.h implementation_files/set.cpp implementation_files/setFunctions.cpp)
